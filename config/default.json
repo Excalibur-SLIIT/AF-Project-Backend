@@ -1,0 +1,4 @@
+{
+    "db": "mongodb+srv://defaultUser:DEFuser@cluster-af.yx3l7.mongodb.net/AFDatabase?retryWrites=true&w=majority",
+    "port": 5000
+}
