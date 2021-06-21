@@ -9,6 +9,22 @@ const User = new mongo.Schema({
         type: String,
         require: true
     },
+    fname: {
+        type: String,
+        require: true
+    },
+    lname: {
+        type: String,
+        require: true
+    },
+    email: {
+        type: String,
+        require: true
+    },
+    mobile: {
+        type: Number,
+        require: true
+    },
     role: {
         type: String,
         require: true

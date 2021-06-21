@@ -1,6 +1,7 @@
 //--------------------------node modules--------------------------------//
 
 const express = require("express");
+const router = express.Router();
 const cors = require("cors");
 const mongo = require("mongoose");
 const config = require("config");
@@ -36,9 +37,10 @@ connection.once("open", () => {
 //-----------------------------------------------------------------//
 
 //--------------------------routes--------------------------------//
+router.use("/user", userRoute);
 
-app.use("/user", userRoute);
 
+app.use(config.get("root"), router);
 //-----------------------------------------------------------------//
 
 //--------------------------server--------------------------------//

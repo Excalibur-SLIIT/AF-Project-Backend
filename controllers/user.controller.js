@@ -51,7 +51,7 @@ const create = async (req, res) => {
                     password: req.body.password,
                     role: req.body.role
                 });
-                await newUser.save()
+                newUser.save()
                     .then((result) => {
                         jwt.sign(
                             {
@@ -137,8 +137,6 @@ const login = async (req, res) => {
                     description: "User not available"
                 });
             } else if (String(result.password) === req.body.password) {
-                //Return jsonwebtoken
-                const payload = ;
                 jwt.sign(
                     {
                         user: {
