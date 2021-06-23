@@ -1,6 +1,6 @@
 {
     "root": "/api",
-    "db": "mongodb+srv://defaultUser:DEFuser@cluster-af.yx3l7.mongodb.net/AFDatabase?retryWrites=true&w=majority",
+    "db": "mongodb+srv://DefaultUser:DEFuser@cluster-af.yx3l7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     "port": 5000,
     "jwtsecret": "excaliburTokenSecret"
 }

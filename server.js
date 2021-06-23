@@ -11,6 +11,7 @@ const config = require("config");
 //--------------------------imports--------------------------------//
 
 const userRoute = require("./routes/user.route");
+const workshopRoute = require("./routes/workshop.routes");
 
 //-----------------------------------------------------------------//
 
@@ -38,6 +39,7 @@ connection.once("open", () => {
 
 //--------------------------routes--------------------------------//
 router.use("/user", userRoute);
+router.use("/workshop", workshopRoute);
 
 
 app.use(config.get("root"), router);

@@ -5,28 +5,44 @@ const config = require("config");
 const get = async (req, res) => {
     await user.find()
         .then(result => {
-            if (Array.isArray(result) && result.length == 0) {
-                res.json({
-                    status: "unsuccessful",
-                    description: "No records available"
-                });
-            } else {
+            if (Array.isArray(result) && result.length > 0) {
                 res.json({
                     status: "successful",
                     count: result.length,
                     results: result
+                });
+            } else {
+                res.json({
+                    status: "unsuccessful",
+                    description: "No users available"
                 });
             }
         })
         .catch(err => {
             res.json({
                 status: "error",
-                error: err
+                description: err
             });
         });
 };
 
-const getUserById = async (req, res) => {
+const getUserById = async () => {
+    await user.findOne({ _id: req.params.id }).select("-password")
+        .then(result => {
+            res.json({
+                status: "successful",
+                results: result
+            });
+        })
+        .catch(err => {
+            res.json({
+                status: "error",
+                description: err
+            });
+        });
+}
+
+const authUser = async (req, res) => {
     await user.findOne({ _id: req.user.id }).select("-password")
         .then(result => {
             res.json({
@@ -34,7 +50,12 @@ const getUserById = async (req, res) => {
                 results: result
             });
         })
-        .catch();
+        .catch(err => {
+            res.json({
+                status: "error",
+                description: err
+            });
+        });
 };
 
 const create = async (req, res) => {
@@ -79,7 +100,7 @@ const create = async (req, res) => {
                     .catch(err => {
                         res.json({
                             status: "error",
-                            error: err
+                            description: err
                         });
                     });
             }
@@ -109,22 +130,26 @@ const update = async (req, res) => {
                 })
             }
         })
-        .catch(err => res.json({
-            status: "error",
-            err
-        }));
+        .catch(err => {
+            res.json({
+                status: "error",
+                description: err
+            });
+        });
 }
 
 const remove = async (req, res) => {
-    await seller.findOneAndRemove({ _id: req.params.id })
+    await user.findOneAndRemove({ _id: req.params.id })
         .then(result => res.status(200).json({
             status: "successful",
             results: result
         }))
-        .catch(err => res.json({
-            status: "error",
-            err
-        }));
+        .catch(err => {
+            res.json({
+                status: "error",
+                description: err
+            });
+        });
 };
 
 const login = async (req, res) => {
@@ -158,10 +183,12 @@ const login = async (req, res) => {
                 });
             }
         })
-        .catch(err => res.json({
-            status: "error",
-            err
-        }));
+        .catch(err => {
+            res.json({
+                status: "error",
+                description: err
+            });
+        });
 }
 
-module.exports = { get, getUserById, create, update, remove, login };
+module.exports = { get, getUserById, authUser, create, update, remove, login };
