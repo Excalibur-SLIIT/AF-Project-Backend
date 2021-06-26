@@ -114,10 +114,10 @@ const UpdateAdmin = async (req, res) => {
                     status: "not found"
                 });
             } else {
-                Admin.findOne({ _id: req.params.id }).then(result => {
+                Admin.findOne({ _id: req.params.id }).then(result1 => {
                     res.status(200).json({
                         status: "susccessful",
-                        result
+                        result1
                     })
                 })
             }
