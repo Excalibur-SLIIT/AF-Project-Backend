@@ -10,7 +10,7 @@ router.route("/login").post(controller.LoginAdmin);
 router.route("/").get(auth, controller.GetAdminDetails);
 //update admin deatils
 router.route("/upadate/:id").put(auth, controller.UpdateAdmin);
-//appovedcaonference datails.
+//appovedcaonference datails..
 router.route("/approvedconf/:id").put(auth, controller.AppovedConference);
 
 module.exports = router;
