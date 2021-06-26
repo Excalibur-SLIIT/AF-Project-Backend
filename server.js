@@ -12,7 +12,7 @@ const config = require("config");
 
 const userRoute = require("./routes/user.route");
 const workshopRoute = require("./routes/workshop.routes");
-
+const admin = require("./routes/admin.routes");
 //-----------------------------------------------------------------//
 
 //--------------------------middleware--------------------------------//
@@ -40,8 +40,9 @@ connection.once("open", () => {
 //--------------------------routes--------------------------------//
 router.use("/user", userRoute);
 router.use("/workshop", workshopRoute);
+router.use("/admin", admin);
 
-
+ 
 app.use(config.get("root"), router);
 //-----------------------------------------------------------------//
 
