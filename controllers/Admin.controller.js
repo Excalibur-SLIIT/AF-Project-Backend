@@ -42,7 +42,7 @@ const GetAdminDetails = async (req, res) => {
   
       jwt.sign(
         payload,
-        config.get("excaliburTokenSecret"),
+        config.get("jwtsecret"),
         { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
@@ -92,7 +92,7 @@ const GetAdminDetails = async (req, res) => {
   
       jwt.sign(
         payload,
-        config.get("excaliburTokenSecret"),
+        config.get("jwtsecret"),
         { expiresIn: 3600 },
         (err, token) => {
           if (err) throw err;
