@@ -7,7 +7,7 @@ router.route("/create").post(controller.CreateAdmin);
 //Login
 router.route("/login").post(controller.LoginAdmin);
 //getadmin details
-router.route("/").get(auth,controller.GetAdminDetails);
+router.route("/").get(auth, controller.GetAdminDetails);
 //update admin deatils
 router.route("/upadate/:id").put(auth, controller.UpdateAdmin);
 //appovedcaonference datails
