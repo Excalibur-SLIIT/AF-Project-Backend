@@ -135,10 +135,10 @@ const UpdateAdmin = async (req, res) => {
 //conference approvement
   const AppovedConference = async (req, res) => {
     try {
-      const condata = Conference.findByIdAndUpdate(req.body.id)
-        .then((condata) => {
-            condata.status = req.body.status;
-            condata
+      const conference = Conference.findByIdAndUpdate(req.body.id)
+        .then((conference) => {
+          conference.status = req.body.status;
+          conference
             .save()
             .then(() =>
               req.body.status
