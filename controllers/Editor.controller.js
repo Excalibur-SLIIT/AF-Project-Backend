@@ -52,14 +52,14 @@ const CreateEditor = async (req, res) => {
       user.password = await bcrypt.hash(password, salt); 
       await user.save();
   
-      const payload = {
+      const load = {
         user: {
           id: user.id,
         },
       };
   
       jwt.sign(
-        payload,
+        load,
         config.get("jwtsecret"),
         { expiresIn: 3600 },
         (err, token) => {
@@ -94,14 +94,14 @@ const LoginEditor = async (req, res) => {
     }
 
 
-    const payload = {
+    const load = {
       user: {
         id: user.id,
       },
     };
 
     jwt.sign(
-      payload,
+      load,
       config.get("jwtSecret"),
       { expiresIn: 3600 },
       (err, token) => {

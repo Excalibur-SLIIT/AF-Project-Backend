@@ -32,16 +32,14 @@ const GetAdminDetails = async (req, res) => {
         return res.status(400).json({ errors: [{ msg: "Invalid Credentials!..." }] });
       }
   
-      //Return token
-  
-      const payload = {
+      const load = {
         user: {
           id: user.id,
         },
       };
   
       jwt.sign(
-        payload,
+        load,
         config.get("jwtsecret"),
         { expiresIn: 3600 },
         (err, token) => {
@@ -76,22 +74,21 @@ const GetAdminDetails = async (req, res) => {
         password,
         role,
       });
-  
- 
+
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
     await user.save();
   
   
-      const payload = {
+      const load = {
         user: {
           id: user.id,
         },
       };
   
       jwt.sign(
-        payload,
+        load,
         config.get("jwtsecret"),
         { expiresIn: 3600 },
         (err, token) => {

@@ -14,6 +14,7 @@ const userRoute = require("./routes/user.route");
 const workshopRoute = require("./routes/workshop.routes");
 const admin = require("./routes/admin.routes");
 const editor = require("./routes/editor.routes");
+const reviewer = require("./routes/reviewer.routes");
 //-----------------------------------------------------------------//
 
 //--------------------------middleware--------------------------------//
@@ -43,6 +44,7 @@ router.use("/user", userRoute);
 router.use("/workshop", workshopRoute);
 router.use("/admin", admin);
 router.use("/editor" , editor);
+router.use("/reviewer" , reviewer);
 
  
 app.use(config.get("root"), router);
