@@ -28,6 +28,12 @@ const User = new mongo.Schema({
     role: {
         type: String,
         require: true
+    },
+    profileImg: {
+        type: Object
+    },
+    attributes: {
+        type: Object
     }
 },{
     timestamps: true

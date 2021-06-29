@@ -1,9 +1,10 @@
 const user = require("../models/User");
 const jwt = require("jsonwebtoken");
 const config = require("config");
+const bcrypt = require("bcryptjs");
 
 const get = async (req, res) => {
-    await user.find()
+    await user.find({}).select("-password")
         .then(result => {
             if (Array.isArray(result) && result.length > 0) {
                 res.json({
@@ -26,7 +27,7 @@ const get = async (req, res) => {
         });
 };
 
-const getUserById = async () => {
+const getUserById = async (req,res) => {
     await user.findOne({ _id: req.params.id }).select("-password")
         .then(result => {
             res.json({
@@ -60,18 +61,38 @@ const authUser = async (req, res) => {
 
 const create = async (req, res) => {
     await user.findOne({ username: req.body.username })
-        .then(result => {
+        .then(async result => {
             if (result != null) {
                 res.json({
                     status: "unsuccessful",
                     description: "A user exists with the provided username"
                 });
             } else {
-                const newUser = new user({
+                var temp = {
                     username: req.body.username,
-                    password: req.body.password,
-                    role: req.body.role
-                });
+                    role: req.body.role.toLowerCase(),
+                    fname: req.body.fname,
+                    lname: req.body.lname,
+                    email: req.body.email,
+                    mobile: req.body.mobile,
+                    profileImg: req.file
+                };
+
+                const salt = await bcrypt.genSalt(10);
+                temp.password = await bcrypt.hash(req.body.password, salt);
+
+                if (temp.role.toLowerCase() === "attendee") {
+                    temp.attributes = {
+                        paid: false
+                    };
+                } else if (temp.role.toLowerCase() === "researcher") {
+                    temp.attributes = {
+                        paid: false
+                    }
+                }
+
+                const newUser = new user(temp);
+
                 newUser.save()
                     .then((result) => {
                         jwt.sign(
@@ -161,7 +182,7 @@ const login = async (req, res) => {
                     status: "unsuccessful",
                     description: "User not available"
                 });
-            } else if (String(result.password) === req.body.password) {
+            } else if (bcrypt.compareSync(req.body.password,result.password)) {
                 jwt.sign(
                     {
                         user: {

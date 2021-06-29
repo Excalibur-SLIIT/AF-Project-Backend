@@ -16,6 +16,7 @@ const admin = require("./routes/admin.routes");
 const editor = require("./routes/editor.routes");
 const reviewer = require("./routes/reviewer.routes");
 const event = require("./routes/event.routes");
+const rPaperRoute = require("./routes/research-paper.route");
 //-----------------------------------------------------------------//
 
 //--------------------------middleware--------------------------------//
@@ -47,6 +48,7 @@ router.use("/admin", admin);
 router.use("/editor", editor);
 router.use("/reviewer", reviewer);
 router.use("/event", event);
+router.use("/research_paper", rPaperRoute);
 
 
 app.use(config.get("root"), router);
