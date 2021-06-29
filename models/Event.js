@@ -13,18 +13,15 @@ const Event = new mongo.Schema({
         type: String,
         require: true
     },
-    endDate: {
+    date: {
         type: String,
-        require: true
+        require: true,
     },
     time: {
         type: String,
         require: true,
     },
-    createdBy: {
-        type: String,
-        require: true
-    },
+
 });
 
 module.exports = mongo.model("Event", Event);
