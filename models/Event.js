@@ -1,18 +1,15 @@
 const mongo = require("mongoose");
 
-const Conference = new mongo.Schema({
-    attendees: {
-        type: [String]
-    },
+const Event = new mongo.Schema({
     name: {
         type: String,
         require: true
     },
-    venue: {
+    speaker: {
         type: String,
-        require: true 
+        require: true
     },
-    startDate: {
+    topic: {
         type: String,
         require: true
     },
@@ -20,19 +17,14 @@ const Conference = new mongo.Schema({
         type: String,
         require: true
     },
-    status: {
+    time: {
         type: String,
         require: true,
-        default: "pending"
     },
     createdBy: {
         type: String,
         require: true
     },
-    resource: {
-        type: String,
-        require: true
-    }
 });
 
-module.exports = mongo.model("Conference", Conference);
+module.exports = mongo.model("Event", Event);
