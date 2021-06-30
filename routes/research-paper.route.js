@@ -1,6 +1,6 @@
 const controller = require("../controllers/research-paper.controller");
 const router = require("express").Router();
-const upload = require("../controllers/file.controller");
+const upload = require("../controllers/file.controller").upload;
 
 router.route("/").get(controller.get);
 

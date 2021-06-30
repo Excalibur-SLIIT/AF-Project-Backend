@@ -49,9 +49,12 @@ router.use("/editor", editor);
 router.use("/reviewer", reviewer);
 router.use("/event", event);
 router.use("/research_paper", rPaperRoute);
-
+router.use("/profile_image",express.static('public/profile-images'));
+router.use("/research_paper",express.static('public/research-papers'));
+router.use("/workshop_proposal",express.static('public/workshop-proposals'));
 
 app.use(config.get("root"), router);
+
 //-----------------------------------------------------------------//
 
 //--------------------------server--------------------------------//

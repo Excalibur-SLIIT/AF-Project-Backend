@@ -1,12 +1,6 @@
 const mongo = require("mongoose");
 
 const Workshop = new mongo.Schema({
-    users: {
-        type: [String]
-    },
-    attendees: {
-        type: [String]
-    },
     name: {
         type: String,
         require: true
@@ -15,7 +9,15 @@ const Workshop = new mongo.Schema({
         type: String,
         require: true
     },
+    conductor: {
+        type: String,
+        require: true
+    },
     time: {
+        type: String,
+        require: true
+    },
+    date: {
         type: String,
         require: true
     },
@@ -23,8 +25,13 @@ const Workshop = new mongo.Schema({
         type: String,
         require: true
     },
-    image: {
-        type: String
+    proposal: {
+        type: Object,
+        require: true
+    },
+    status: {
+        type: String,
+        require: true
     }
 },{
     timestamps: true
