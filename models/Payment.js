@@ -1,7 +1,7 @@
 const mongo = require("mongoose");
 
 const Payment = new mongo.Schema({
-    attendee: {
+    user: {
         type: String,
         require: true
     },
