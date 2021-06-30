@@ -87,7 +87,8 @@ const create = async (req, res) => {
                     };
                 } else if (temp.role.toLowerCase() === "researcher") {
                     temp.attributes = {
-                        paid: false
+                        paid: false,
+                        fileStatus: "pending"
                     }
                 }
 

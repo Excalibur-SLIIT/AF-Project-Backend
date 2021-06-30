@@ -127,7 +127,7 @@ const remove = async (req, res) => {
 };
 
 const approve = async (req,res) => {
-    if(req.user.id, "editor") {
+    if(req.user.id, "reviewer") {
         await workshop.findOneAndUpdate({ _id: req.params.id }, { $set: { proposal: "approved" } }).
         then(result => {
             if (result == null) {
@@ -159,8 +159,8 @@ const approve = async (req,res) => {
 };
 
 const decline = async (req,res) => {
-    if(req.user.id, "editor") {
-        await workshop.findOneAndUpdate({ _id: req.params.id }, { $set: { proposal: "declined" } }).
+    if(req.user.id, "reviewer") {
+        await workshop.findOneAndUpdate({ _id: req.params.id }, { $set: { status: "declined" } }).
         then(result => {
             if (result == null) {
                 res.json({

@@ -16,6 +16,10 @@ const paper = mongo.Schema({
     file: {
         type: Object,
         require: true
+    },
+    status: {
+        type: String,
+        require: true
     }
 }); 
 
